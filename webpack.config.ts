@@ -76,9 +76,13 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: /\.css$/,
                 include: monacoPath,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.ttf$/,
+                use: ['file-loader'],
             },
         ],
     },

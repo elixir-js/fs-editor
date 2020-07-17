@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Editor } from './scenes/Editor';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<h1>Here is your app</h1>, document.getElementById('root'));
+ReactDOM.render(<Editor />, document.getElementById('root'));
