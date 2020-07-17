@@ -1,0 +1,30 @@
+{
+    "presets": [
+        "@babel/preset-react",
+        [
+            "@babel/preset-env",
+            {
+                "modules": "commonjs",
+                "loose": true
+            }
+        ],
+        [
+            "@babel/preset-typescript",
+            {
+                "allExtensions": true,
+                "isTSX": true
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-transform-typescript",
+        "@babel/plugin-proposal-class-properties",
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ]
+    ]
+}
