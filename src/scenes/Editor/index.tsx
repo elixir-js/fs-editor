@@ -12,11 +12,11 @@ export const Editor: React.FC = () => {
         readOnly: false,
         // cursorStyle: 'line',
         automaticLayout: false,
+
     };
 
     const editorDidMount = (editor: any, monaco: any) => {
         console.log('editorDidMount', editor);
-        console.log(1, editor.getModel().uri.toString());
         editor.focus();
     };
 
