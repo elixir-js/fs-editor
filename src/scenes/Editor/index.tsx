@@ -59,7 +59,7 @@ export const Editor: React.FC = () => {
                 onChange={onChange}
                 editorDidMount={editorDidMount}
             />
-            <div ref={consoleEl}></div>
+            <div ref={consoleEl}>Your console</div>
         </>
     );
 };
