@@ -4,16 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Hello friend</title>
-        <script>
-            console.defaultLog = console.log.bind(console);
-            console.logs = ['bla'];
-            console.log = function () {
-                // default &  console.log()
-                console.defaultLog.apply(console, arguments);
-                // new & array data
-                console.logs.push(Array.from(arguments));
-            };
-        </script>
     </head>
     <body>
         <div id="root"></div>

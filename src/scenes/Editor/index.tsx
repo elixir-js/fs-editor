@@ -8,7 +8,6 @@ import * as ts from 'typescript';
 
 export const Editor: React.FC = () => {
     const [code, setCode] = React.useState('// type your code...');
-    const [history, setHistory] = React.useState<any>([]);
     const console = new Console();
     const consoleEl = React.useRef<HTMLDivElement>(null);
 
