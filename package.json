@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/fayzzzm/fs-editor#readme",
     "dependencies": {
+        "console-emitter": "0.0.1",
         "fs": "0.0.1-security",
         "mobx": "^5.15.4",
         "mobx-react": "^6.2.2",
