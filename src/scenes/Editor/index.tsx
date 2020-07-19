@@ -1,20 +1,18 @@
-import * as React from 'react';
+import * as ts from 'typescript';
+import React, { useEffect, useState } from 'react';
+import { ConsoleUI } from './components/Console';
 import MonacoEditor from 'react-monaco-editor';
+import { consoleLogService } from '@service/consoleLog';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-import * as ts from 'typescript';
-
 export const Editor: React.FC = () => {
-    const [code, setCode] = React.useState('// type your code...');
+    const [code] = useState('// type your code...');
     const console = new Console();
-    const consoleEl = React.useRef<HTMLDivElement>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const logme = (...args: any) => {
-            global.console.log(args);
-            consoleEl.current!.innerText += `\n${args[0] || ''}`;
+            consoleLogService.sendMessage(args.join(', '));
         };
 
         console.on('log', logme);
@@ -24,27 +22,25 @@ export const Editor: React.FC = () => {
         selectOnLineNumbers: true,
         roundedSelection: false,
         readOnly: false,
-        // cursorStyle: 'line',
         automaticLayout: false,
     };
 
-    const editorDidMount = (editor: any, monaco: any) => {
+    const editorDidMount = (editor: any) => {
         editor.focus();
     };
 
-    const onChange = (newValue: any, e: any) => {
-        const { outputText, diagnostics } = ts.transpileModule(newValue, {
+    const onChange = (newValue: string) => {
+        const { outputText } = ts.transpileModule(newValue, {
             compilerOptions: { module: ts.ModuleKind.CommonJS },
         });
 
-        global.console.log(newValue);
-        // setHistory([]);
-        consoleEl.current!.innerHTML = '';
+        consoleLogService.clearMessages();
 
         try {
             eval(outputText);
         } catch (e) {
-            consoleEl.current!.innerText = e.toString();
+            consoleLogService.clearMessages();
+            consoleLogService.sendMessage(e.toString());
         }
     };
     return (
@@ -59,7 +55,7 @@ export const Editor: React.FC = () => {
                 onChange={onChange}
                 editorDidMount={editorDidMount}
             />
-            <div ref={consoleEl}>Your console</div>
+            <ConsoleUI />
         </>
     );
 };
