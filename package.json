@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/fayzzzm/fs-editor#readme",
     "dependencies": {
+        "classnames": "^2.2.6",
         "console-emitter": "0.0.1",
         "fs": "0.0.1-security",
         "mobx": "^5.15.4",
@@ -62,6 +63,7 @@
         "monaco-editor-webpack-plugin": "^1.9.0",
         "node-sass": "^4.14.1",
         "prettier": "^2.0.5",
+        "prop-types": "^15.7.2",
         "sass-loader": "^9.0.2",
         "style-loader": "^1.2.1",
         "ts-jest": "^26.1.3",

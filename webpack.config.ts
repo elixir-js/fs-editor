@@ -25,8 +25,9 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx'],
         alias: {
-            client: appPath,
+            '@app': appPath,
             '@service': path.resolve(appPath, './services'),
+            '@components': path.resolve(appPath, './components'),
         },
         modules: [appPath, nodeModulesPath],
     },
