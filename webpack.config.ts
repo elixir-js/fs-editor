@@ -26,7 +26,7 @@ module.exports = {
         extensions: ['.js', '.ts', '.tsx', '.jsx'],
         alias: {
             client: appPath,
-            models: path.resolve(appPath, './models'),
+            '@service': path.resolve(appPath, './services'),
         },
         modules: [appPath, nodeModulesPath],
     },
@@ -72,10 +72,10 @@ module.exports = {
                     },
                     {
                         loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            namedExport: true,
-                        },
+                        // options: {
+                        //     modules: true,
+                        //     namedExport: true,
+                        // },
                     },
                     'sass-loader',
                 ],
