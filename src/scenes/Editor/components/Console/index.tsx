@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { consoleLogService } from '@service/consoleLog';
+import { useConsoleLogs } from '@app/hooks';
+import { LogModal } from '@components/LogModal';
+
 import './styles.scss';
 
 export const ConsoleUI: React.FC = () => {
-    const [logs, setLogs] = useState<string[]>([]);
+    const logs = useConsoleLogs();
 
-    useEffect(() => {
-        const subscription = consoleLogService
-            .getMessage()
-            .subscribe((message: any) => {
-                if (message) {
-                    setLogs((logs) => logs.concat(message));
-                    global.console.log(logs);
-                } else {
-                    setLogs([]);
-                }
-            });
+    global.console.log(logs);
 
-        return () => subscription.unsubscribe();
-    });
-
-    return <div className="console">{logs.join('\n')}</div>;
+    return (
+        <div className="console">
+            {logs.length
+                ? logs.map((logMessage) => (
+                      <LogModal key={logMessage.message} {...logMessage} />
+                  ))
+                : null}
+        </div>
+    );
 };

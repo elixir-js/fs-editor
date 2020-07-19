@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ConsoleUI } from './components/Console';
 import MonacoEditor from 'react-monaco-editor';
 import { consoleLogService } from '@service/consoleLog';
+import { LogType } from '@app/types';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
 
@@ -11,11 +12,15 @@ export const Editor: React.FC = () => {
     const console = new Console();
 
     useEffect(() => {
-        const logme = (...args: any) => {
-            consoleLogService.sendMessage(args.join(', '));
+        const logHandler = (...args: any) => {
+            global.console.log(123, JSON.parse(args));
+            consoleLogService.sendMessage({
+                type: LogType.LOG,
+                message: JSON.parse(args),
+            });
         };
 
-        console.on('log', logme);
+        console.on('log', logHandler);
     }, []);
 
     const options = {
@@ -30,6 +35,15 @@ export const Editor: React.FC = () => {
     };
 
     const onChange = (newValue: string) => {
+        newValue = newValue.replace(
+            /console\.log\((.*)\)/g,
+            (_, values: string) =>
+                `console.log('[${values
+                    .replace(/'/g, '"')
+                    .replace(/([\d\w]*):/g, (_, key) => `"${key}":`)}]')`,
+        );
+        global.console.log(newValue);
+
         const { outputText } = ts.transpileModule(newValue, {
             compilerOptions: { module: ts.ModuleKind.CommonJS },
         });
@@ -39,8 +53,10 @@ export const Editor: React.FC = () => {
         try {
             eval(outputText);
         } catch (e) {
-            consoleLogService.clearMessages();
-            consoleLogService.sendMessage(e.toString());
+            consoleLogService.sendMessage({
+                type: LogType.ERROR,
+                message: [e.toString()],
+            });
         }
     };
     return (

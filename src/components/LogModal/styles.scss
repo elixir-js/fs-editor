@@ -1,0 +1,38 @@
+.log {
+    padding: 3px;
+    color: #ffff;
+
+    &--error {
+        background: #e74c3c;
+        border-radius: 3px;
+        color: #1abc9c !important;
+    }
+
+    &--number {
+        color: #27ae60;
+    }
+
+    &--string {
+        color: #f39c12;
+    }
+
+    &--boolean {
+        color: #9b59b6;
+    }
+
+    &--object {
+        color: #c0392b;
+    }
+
+    ul {
+        list-style: none;
+        margin: 10px 0;
+        padding-inline-start: 20px;
+        // padding: 0;
+    }
+
+    ul:nth-child(1) {
+        margin: 0;
+        padding-inline-start: 0;
+    }
+}
