@@ -15,7 +15,6 @@
         "typescript"
     ],
     "author": "fayzzzm|abdurashidovtaha",
-    "license": "ISC",
     "bugs": {
         "url": "https://github.com/fayzzzm/fs-editor/issues"
     },
@@ -23,15 +22,13 @@
     "dependencies": {
         "classnames": "^2.2.6",
         "console-emitter": "0.0.1",
-        "fs": "0.0.1-security",
         "mobx": "^5.15.4",
         "mobx-react": "^6.2.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-monaco-editor": "^0.39.1",
         "react-router-dom": "^5.2.0",
-        "rxjs": "^6.6.0",
-        "typescript-compiler": "^1.4.1-2"
+        "rxjs": "^6.6.0"
     },
     "devDependencies": {
         "@babel/core": "^7.10.5",
