@@ -11,6 +11,9 @@ export const ConsoleUI: React.FC = () => {
 
     return (
         <div className="console">
+            <code className="console__title">
+                <i>console:</i>
+            </code>
             {logs.length
                 ? logs.map((logMessage) => (
                       <LogModal key={logMessage.message} {...logMessage} />

@@ -1,28 +1,36 @@
 import React from 'react';
-import { ILogMessage, LogType } from '@app/types';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { getClassName } from '@app/utils';
+import { ILogMessage, LogType } from '@app/types';
 import { RecursiveNodes } from '@components/RecursiveNodes';
 
 import './styles.scss';
 
-export const LogModal: React.FC<ILogMessage> = (props): any => {
+export const LogModal: React.FC<ILogMessage> = (props) => {
     const { type, message } = props;
-    const typeofMessage = `log--${typeof message}`;
 
-    global.console.log(typeof message);
+    global.console.log(getClassName('log', type, typeof 1));
 
-    const classNames = classnames(['log', type, typeofMessage]);
     return (
-        <code className={classNames}>
+        <div className="logs">
+            <code>
+                &gt;
+                {type !== LogType.ERROR &&
+                    message.length > 1 &&
+                    `(${message.length})`}
+            </code>
             {message.map((item: any) =>
                 typeof item === 'object' ? (
-                    RecursiveNodes(item)
+                    RecursiveNodes({ tree: item })
                 ) : (
-                    <code>{item.toString()}</code>
+                    <code className={getClassName('log', type, typeof item)}>
+                        {typeof item === 'string'
+                            ? `"${item}"`
+                            : item.toString()}
+                    </code>
                 ),
             )}
-        </code>
+        </div>
     );
 };
 
