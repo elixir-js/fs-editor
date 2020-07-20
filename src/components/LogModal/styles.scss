@@ -31,8 +31,9 @@
         // padding: 0;
     }
 
-    ul:nth-child(1) {
+    & > ul {
         margin: 0;
         padding-inline-start: 0;
+        margin: 10px 0;
     }
 }

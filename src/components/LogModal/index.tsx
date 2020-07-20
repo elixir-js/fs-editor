@@ -14,15 +14,15 @@ export const LogModal: React.FC<ILogMessage> = (props): any => {
 
     const classNames = classnames(['log', type, typeofMessage]);
     return (
-        <div className={classNames}>
+        <code className={classNames}>
             {message.map((item: any) =>
                 typeof item === 'object' ? (
                     RecursiveNodes(item)
                 ) : (
-                    <div>{item}</div>
+                    <code>{item.toString()}</code>
                 ),
             )}
-        </div>
+        </code>
     );
 };
 

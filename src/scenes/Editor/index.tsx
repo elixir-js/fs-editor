@@ -13,10 +13,10 @@ export const Editor: React.FC = () => {
 
     useEffect(() => {
         const logHandler = (...args: any) => {
-            global.console.log(123, JSON.parse(args));
+            global.console.log(123, args);
             consoleLogService.sendMessage({
                 type: LogType.LOG,
-                message: JSON.parse(args),
+                message: args,
             });
         };
 
@@ -37,10 +37,7 @@ export const Editor: React.FC = () => {
     const onChange = (newValue: string) => {
         newValue = newValue.replace(
             /console\.log\((.*)\)/g,
-            (_, values: string) =>
-                `console.log('[${values
-                    .replace(/'/g, '"')
-                    .replace(/([\d\w]*):/g, (_, key) => `"${key}":`)}]')`,
+            (_, values: string) => `console.log([${values}])`,
         );
         global.console.log(newValue);
 

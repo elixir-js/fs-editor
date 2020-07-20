@@ -2,15 +2,19 @@ import React from 'react';
 
 import './styles.scss';
 
-export const RecursiveNodes = (values: any) => {
-    const ListNodes = Object.keys(values).reduce((nodes: any[], list: any) => {
-        global.console.log(typeof list);
-        if (typeof values[list] === 'object') {
-            nodes.push(RecursiveNodes(values[list]));
+export const RecursiveNodes = (tree: any) => {
+    const ListNodes = Object.keys(tree).reduce((nodes: any[], node: any) => {
+        global.console.log(typeof node);
+        if (typeof tree[node] === 'object') {
+            nodes.push(RecursiveNodes(tree[node]));
         } else {
+            let innerValue = tree[node];
+            if (typeof tree[node] === 'function')
+                innerValue = tree[node].toString();
+
             nodes.push(
-                <li key={list.concat(Math.random() ** 10)}>
-                    {list}: {values[list]}
+                <li key={node.concat(Math.random() ** 10)}>
+                    {node}: {innerValue}
                 </li>,
             );
         }
@@ -21,7 +25,7 @@ export const RecursiveNodes = (values: any) => {
     return (
         <ul>
             <span>
-                {Array.isArray(values) ? `Array[${values.length}]:` : 'Object:'}
+                {Array.isArray(tree) ? `Array[${tree.length}]:` : 'Object:'}
             </span>
             {ListNodes}
         </ul>
