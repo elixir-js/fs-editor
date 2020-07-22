@@ -6,6 +6,7 @@ import { ConsoleUI } from './components/Console';
 import { WindowUI } from './components/Window';
 import { consoleLogService } from '@service/consoleLog';
 import axios from 'axios';
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
 

@@ -8,6 +8,7 @@
     "webpack-server:client": "npx webpack-dev-server --config ./src/client/webpack.config.ts",
     "server:build": "tsc -p ./src/server/tsconfig.json && node ./src/server/dist/src/index.js",
     "server:build-watch": "tsc -w -p ./src/server/tsconfig.json && nodemon ./src/server/dist/src/index.js"
+
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "console-emitter": "0.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+
     "js-sha256": "^0.9.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
