@@ -1,4 +1,10 @@
 .window-ui {
     background-color: #fff;
     padding: 20px;
+
+    & > iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
 }

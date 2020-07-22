@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useConsoleLogs } from '@app/hooks';
 import { LogModal } from '@components/LogModal';
 

@@ -5,6 +5,8 @@ import { LogType } from '@app/types';
 import { ConsoleUI } from './components/Console';
 import { WindowUI } from './components/Window';
 import { consoleLogService } from '@service/consoleLog';
+import axios from 'axios';
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
 
@@ -15,6 +17,10 @@ export const Editor: React.FC = () => {
     const console = new Console();
 
     useEffect(() => {
+        window.addEventListener('message', (e) => {
+            if (e.origin === 'http://localhost:3000') console.log(e.data);
+        });
+
         const logHandler = (...args: any) => {
             consoleLogService.sendMessage({
                 type: LogType.LOG,
@@ -23,6 +29,10 @@ export const Editor: React.FC = () => {
         };
 
         console.on('log', logHandler);
+
+        return () => {
+            window.removeEventListener('message', () => '');
+        };
     }, []);
 
     const options = {
@@ -36,25 +46,22 @@ export const Editor: React.FC = () => {
         editor.focus();
     };
 
-    const onChange = (newValue: string) => {
-        newValue = newValue.replace(
-            /console\.log\((.*)\)/g,
-            (_, values: string) => `console.log([${values}])`,
-        );
-
+    const onChange = async (newValue: string) => {
         const { outputText } = ts.transpileModule(newValue, {
             compilerOptions: { module: ts.ModuleKind.CommonJS },
         });
 
         consoleLogService.clearMessages();
+        const iframe = document.querySelector('iframe');
 
         try {
-            eval(outputText);
-        } catch (e) {
-            consoleLogService.sendMessage({
-                type: LogType.ERROR,
-                message: [e.toString()],
+            await axios.post('http://localhost:3000/writeFile', {
+                outputText,
             });
+
+            iframe!.src = iframe!.src;
+        } catch (e) {
+            //
         }
     };
 
