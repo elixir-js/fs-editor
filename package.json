@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack-server:client": "npx webpack-dev-server --config ./src/client/webpack.config.ts"
+    "webpack-server:client": "npx webpack-dev-server --config ./src/client/webpack.config.ts",
+    "server:build": "tsc -p ./src/server/tsconfig.json && node ./src/server/dist/src/index.js",
+    "server:build-watch": "tsc -w -p ./src/server/tsconfig.json && nodemon ./src/server/dist/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,12 @@
   },
   "homepage": "https://github.com/fayzzzm/fs-editor#readme",
   "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
     "console-emitter": "0.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "js-sha256": "^0.9.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
@@ -42,6 +48,8 @@
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
     "@types/classnames": "^2.2.10",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.7",
     "@types/node": "^14.0.23",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
