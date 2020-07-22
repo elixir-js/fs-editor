@@ -28,7 +28,7 @@ export const RecursiveNodes = <T extends { [key: string]: any }>({
                     innerValue = tree[node].toString();
 
                 nodes.push(
-                    <code key={node.concat(Math.random() ** 10)}>
+                    <code key={sha256(node.concat(Math.random() ** 10))}>
                         {node}: {innerValue},
                     </code>,
                 );

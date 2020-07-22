@@ -1,9 +1,10 @@
 import * as ts from 'typescript';
-import React, { useEffect, useState } from 'react';
-import { ConsoleUI } from './components/Console';
 import MonacoEditor from 'react-monaco-editor';
-import { consoleLogService } from '@service/consoleLog';
+import React, { useEffect, useState } from 'react';
 import { LogType } from '@app/types';
+import { ConsoleUI } from './components/Console';
+import { WindowUI } from './components/Window';
+import { consoleLogService } from '@service/consoleLog';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
 
@@ -39,7 +40,6 @@ export const Editor: React.FC = () => {
             /console\.log\((.*)\)/g,
             (_, values: string) => `console.log([${values}])`,
         );
-        global.console.log(newValue);
 
         const { outputText } = ts.transpileModule(newValue, {
             compilerOptions: { module: ts.ModuleKind.CommonJS },
@@ -56,8 +56,9 @@ export const Editor: React.FC = () => {
             });
         }
     };
+
     return (
-        <>
+        <div className="fs-editor">
             <MonacoEditor
                 width="800"
                 height="600"
@@ -69,6 +70,7 @@ export const Editor: React.FC = () => {
                 editorDidMount={editorDidMount}
             />
             <ConsoleUI />
-        </>
+            <WindowUI></WindowUI>
+        </div>
     );
 };

@@ -7,8 +7,6 @@ import './styles.scss';
 export const ConsoleUI: React.FC = () => {
     const logs = useConsoleLogs();
 
-    global.console.log(11, logs);
-
     return (
         <div className="console">
             <code className="console__title">
