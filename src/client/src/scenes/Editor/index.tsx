@@ -8,13 +8,14 @@ import { consoleLogService } from '@service/consoleLog';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
 
+import './styles.scss';
+
 export const Editor: React.FC = () => {
     const [code] = useState('// type your code...');
     const console = new Console();
 
     useEffect(() => {
         const logHandler = (...args: any) => {
-            global.console.log(123, args);
             consoleLogService.sendMessage({
                 type: LogType.LOG,
                 message: args,
@@ -59,18 +60,20 @@ export const Editor: React.FC = () => {
 
     return (
         <div className="fs-editor">
-            <MonacoEditor
-                width="800"
-                height="600"
-                language="typescript"
-                theme="vs-dark"
-                value={code}
-                options={options}
-                onChange={onChange}
-                editorDidMount={editorDidMount}
-            />
-            <ConsoleUI />
-            <WindowUI></WindowUI>
+            <div className="fs-editor__view">
+                <MonacoEditor
+                    width="800"
+                    height="600"
+                    language="typescript"
+                    theme="vs-dark"
+                    value={code}
+                    options={options}
+                    onChange={onChange}
+                    editorDidMount={editorDidMount}
+                />
+                <ConsoleUI />
+            </div>
+            <WindowUI />
         </div>
     );
 };

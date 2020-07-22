@@ -7,12 +7,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const appPath = path.resolve(__dirname, './src');
-const monacoPath = path.resolve(__dirname, './node_modules/monaco-editor');
+const monacoPath = path.resolve(__dirname, '../../node_modules/monaco-editor');
+console.log(monacoPath);
 const nodeModulesPath = path.resolve('./node_modules');
 
 module.exports = {
     entry: {
-        app: './src/index.tsx',
+        app: './src/client/src/index.tsx',
         'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker',
         'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
         'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker',
@@ -47,7 +48,7 @@ module.exports = {
                     {
                         loader: 'ts-loader',
                         options: {
-                            configFile: path.resolve('./tsconfig.json'),
+                            configFile: 'tsconfig.json',
                         },
                     },
                 ],
@@ -67,19 +68,7 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 include: appPath,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        // options: {
-                        //     modules: true,
-                        //     namedExport: true,
-                        // },
-                    },
-                    'sass-loader',
-                ],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.css$/,

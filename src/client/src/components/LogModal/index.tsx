@@ -9,8 +9,6 @@ import './styles.scss';
 export const LogModal: React.FC<ILogMessage> = (props) => {
     const { type, message } = props;
 
-    global.console.log(getClassName('log', type, typeof 1));
-
     return (
         <div className="logs">
             <code>
