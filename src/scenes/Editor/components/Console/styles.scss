@@ -6,4 +6,37 @@
     width: 800px;
     height: 300px;
     margin-top: 10px;
+    overflow-y: scroll;
+
+    &__title {
+        text-transform: capitalize;
+        margin-bottom: 8px;
+        display: inline-block;
+        font-size: 15px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 14px;
+        background-color: #1e1e1e;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #1e1e1e;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #1e1e1e;
+    }
+
+    &:hover {
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+    }
+
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
 }

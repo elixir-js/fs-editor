@@ -7,10 +7,11 @@ import './styles.scss';
 export const ConsoleUI: React.FC = () => {
     const logs = useConsoleLogs();
 
-    global.console.log(logs);
-
     return (
         <div className="console">
+            <code className="console__title">
+                <i>console:</i>
+            </code>
             {logs.length
                 ? logs.map((logMessage) => (
                       <LogModal key={logMessage.message} {...logMessage} />
