@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 
 import './styles.scss';
 
@@ -7,7 +7,10 @@ export const WindowUI: React.FC = () => {
 
     return (
         <div className="window-ui">
-            <iframe ref={iframeWindow} src="http://localhost:3000"></iframe>
+            <iframe
+                ref={iframeWindow}
+                src="http://localhost:3000/serve"
+            ></iframe>
         </div>
     );
 };

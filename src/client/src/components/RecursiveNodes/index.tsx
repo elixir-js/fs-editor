@@ -1,6 +1,6 @@
 import React, { useState, PropsWithChildren } from 'react';
 import PropTypes from 'prop-types';
-import { sha256 } from 'js-sha256';
+import { v4 as uuidv4 } from 'uuid';
 
 import './styles.scss';
 
@@ -28,7 +28,7 @@ export const RecursiveNodes = <T extends { [key: string]: any }>({
                     innerValue = tree[node].toString();
 
                 nodes.push(
-                    <code key={sha256(node.concat(Math.random() ** 10))}>
+                    <code key={uuidv4()}>
                         {node}: {innerValue},
                     </code>,
                 );
@@ -40,7 +40,7 @@ export const RecursiveNodes = <T extends { [key: string]: any }>({
     );
 
     return (
-        <ul key={sha256(JSON.stringify(tree))}>
+        <ul key={uuidv4()}>
             <code>
                 <i>{Array.isArray(tree) ? `Array:` : `Object:`}</i>
             </code>

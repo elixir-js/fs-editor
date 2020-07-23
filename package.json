@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack-server:client": "npx webpack-dev-server --config ./src/client/webpack.config.ts",
+    "app:build": "concurrently \"npm run webpack-server:client\" \"npm run server:build-watch\"",
     "server:build": "tsc -p ./src/server/tsconfig.json && node ./src/server/dist/src/index.js",
-    "server:build-watch": "tsc -w -p ./src/server/tsconfig.json && nodemon ./src/server/dist/src/index.js"
-
+    "server:build-watch": "concurrently  \"tsc -w -p ./src/server/tsconfig.json\" \"node ./src/server/dist/src/index.js 3000\""
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,14 @@
   },
   "homepage": "https://github.com/fayzzzm/fs-editor#readme",
   "dependencies": {
+    "@hapi/boom": "^9.1.0",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
+    "concurrently": "^5.2.0",
     "console-emitter": "0.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-
     "js-sha256": "^0.9.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
@@ -38,7 +39,8 @@
     "react-dom": "^16.13.1",
     "react-monaco-editor": "^0.39.1",
     "react-router-dom": "^5.2.0",
-    "rxjs": "^6.6.0"
+    "rxjs": "^6.6.0",
+    "uuid": "^8.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -56,6 +58,7 @@
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "@types/uuid": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "babel-loader": "^8.1.0",
