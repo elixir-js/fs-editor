@@ -1,0 +1,11 @@
+.file-button {
+    padding: 8px 14px;
+    color: #fff;
+    height: 30px;
+    font-family: monospace;
+    line-height: 30px;
+
+    &--active {
+        background-color: red;
+    }
+}

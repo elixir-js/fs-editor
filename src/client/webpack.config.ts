@@ -93,7 +93,7 @@ module.exports = {
         }),
         new MonacoWebpackPlugin({
             // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-            languages: ['typescript'],
+            languages: ['typescript', 'javascript', 'html'],
             features: [
                 'accessibilityHelp',
                 'bracketMatching',

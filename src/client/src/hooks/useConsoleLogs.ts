@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { consoleLogService } from '@service/consoleLog';
 import { ILogMessage, LogType } from '@app/types';
 
-export const useConsoleLogs = () => {
+export const useConsoleLogs = (): ILogMessage[] => {
     const [logs, setLogs] = useState<ILogMessage[]>([]);
 
     useEffect(() => {

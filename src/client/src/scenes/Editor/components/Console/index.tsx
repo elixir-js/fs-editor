@@ -1,6 +1,7 @@
 import React from 'react';
 import { useConsoleLogs } from '@app/hooks';
 import { LogModal } from '@components/LogModal';
+import { v4 as uuid4 } from 'uuid';
 
 import './styles.scss';
 
@@ -14,7 +15,7 @@ export const ConsoleUI: React.FC = () => {
             </code>
             {logs.length
                 ? logs.map((logMessage) => (
-                      <LogModal key={logMessage.message} {...logMessage} />
+                      <LogModal key={uuid4()} {...logMessage} />
                   ))
                 : null}
         </div>
