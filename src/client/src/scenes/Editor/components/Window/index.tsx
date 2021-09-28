@@ -9,7 +9,7 @@ export const WindowUI: React.FC = () => {
         <div className="window-ui">
             <iframe
                 ref={iframeWindow}
-                src="http://localhost:3000/serve"
+                src="http://localhost:8080/serve"
             ></iframe>
         </div>
     );

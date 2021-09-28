@@ -10,7 +10,7 @@ export const useUpdateCode = (
         const getCode = async () => {
             const response = await axios({
                 method: 'get',
-                url: `http://localhost:3000/io/read-file/${extension}`,
+                url: `http://localhost:8080/io/read-file/${extension}`,
             });
 
             setCode(response.data);
