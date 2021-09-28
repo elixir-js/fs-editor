@@ -10,6 +10,7 @@ const app = express();
 app.use(cors())
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
+    .use('/ping', (_, res) => res.send('the server is working!'))
     .use('/static', express.static(path.resolve(__dirname, '../../files')))
     .use('/', router)
     .use((_req, _res, next) => next(Boom.notFound('Endpoint not found')))
@@ -36,6 +37,8 @@ function sendError(res: express.Response, error: Boom.Boom): void {
 
 if (!module.parent) {
     const port = process.env.NODEJS_PORT || 8080;
+
+    console.log(port);
 
     app.listen(port, () => {
         console.info(`Application started on port ${port}`);

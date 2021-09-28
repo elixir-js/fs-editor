@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         window.addEventListener('message', (e) => {
-            if (e.origin === 'http://localhost:3000') console.log(e.data);
+            if (e.origin === 'http://localhost:8080') console.log(e.data);
         });
 
         const logHandler = (...args: any) => {
