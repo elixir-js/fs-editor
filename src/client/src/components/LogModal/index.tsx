@@ -22,6 +22,7 @@ export const LogModal: React.FC<ILogMessage> = (props) => {
             </code>
         );
     });
+
     return (
         <div className="logs">
             <code>

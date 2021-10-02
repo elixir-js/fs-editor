@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { RouterApp } from './router';
 
-import { LogType } from '@app/types';
 import { consoleLogService } from '@service/consoleLog';
 import { getLogType } from '@utils/getLogType';
 
@@ -19,7 +18,7 @@ const App: React.FC = () => {
     useEffect(() => {
         window.addEventListener('message', ({ origin, data: message }) => {
             if (origin === 'http://localhost:8080') {
-                global.console.log(message);
+                console.log(message);
             }
         });
 
