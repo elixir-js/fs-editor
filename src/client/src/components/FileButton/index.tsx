@@ -37,9 +37,7 @@ export const FileButton: React.FC<IFileButton> = inject('editorDataModel')(
                 key={uuidv4()}
                 className={classNames}
             >
-                <i>
-                    {name}.{generateShortCut(extension)}
-                </i>
+                {name}.{generateShortCut(extension)}
             </div>
         );
     },

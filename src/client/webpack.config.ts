@@ -29,6 +29,7 @@ module.exports = {
             '@app': appPath,
             '@service': path.resolve(appPath, './services'),
             '@components': path.resolve(appPath, './components'),
+            '@utils': path.resolve(appPath, './utils'),
         },
         modules: [appPath, nodeModulesPath],
     },
