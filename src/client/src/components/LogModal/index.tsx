@@ -10,28 +10,27 @@ import './styles.scss';
 export const LogModal: React.FC<ILogMessage> = (props) => {
     const { type, message } = props;
 
+    const Messages = message.map((each: any) => {
+        return typeof each === 'object' ? (
+            RecursiveNodes({ tree: each })
+        ) : (
+            <code
+                key={uuidv4()}
+                className={getClassName('log', type, typeof each)}
+            >
+                {typeof each === 'string' ? `"${each}"` : each.toString()}
+            </code>
+        );
+    });
     return (
         <div className="logs">
             <code>
-                &gt;
+                &gt;&gt;
                 {type !== LogType.ERROR &&
                     message.length > 1 &&
                     `(${message.length})`}
             </code>
-            {message.map((item: any) =>
-                typeof item === 'object' ? (
-                    RecursiveNodes({ tree: item })
-                ) : (
-                    <code
-                        key={uuidv4()}
-                        className={getClassName('log', type, typeof item)}
-                    >
-                        {typeof item === 'string'
-                            ? `"${item}"`
-                            : item.toString()}
-                    </code>
-                ),
-            )}
+            {Messages}
         </div>
     );
 };

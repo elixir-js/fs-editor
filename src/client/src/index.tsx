@@ -3,8 +3,10 @@ import * as appModels from '@app/models';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { RouterApp } from './router';
+
 import { LogType } from '@app/types';
 import { consoleLogService } from '@service/consoleLog';
+import { getLogType } from '@utils/getLogType';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Console = require('console-emitter');
@@ -15,16 +17,24 @@ const App: React.FC = () => {
     const console = new Console();
 
     useEffect(() => {
-        window.addEventListener('message', (e) => {
-            if (e.origin === 'http://localhost:8080') console.log(e.data);
+        window.addEventListener('message', ({ origin, data: message }) => {
+            if (origin === 'http://localhost:8080') {
+                global.console.log(message);
+            }
         });
 
-        const logHandler = (...args: any) => {
-            global.console.log(args);
-            consoleLogService.sendMessage({
-                type: LogType.LOG,
-                message: args,
-            });
+        const logHandler = (message: { type: string; content: string[] }) => {
+            const { type: prevType, content } = message;
+            try {
+                const type = getLogType(prevType);
+
+                consoleLogService.sendMessage({
+                    type,
+                    message: content,
+                });
+            } catch (e) {
+                // Something is here
+            }
         };
 
         console.on('log', logHandler);
