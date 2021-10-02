@@ -9,4 +9,8 @@ export const fileButtonData = [
         extension: ExtensionType.JS,
         name: 'main',
     },
+    {
+        extension: ExtensionType.CSS,
+        name: 'style',
+    },
 ];
