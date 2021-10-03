@@ -8,18 +8,16 @@ import './styles.scss';
 export const ConsoleUI: React.FC = () => {
     const logs = useConsoleLogs();
 
-    // console.log('Here are the logs', logs);
+    const LogMessages = logs.map((logMessage) => (
+        <LogModal key={uuid4()} {...logMessage} />
+    ));
 
     return (
         <div className="console">
             <code className="console__title">
                 <i>console:</i>
             </code>
-            {logs.length
-                ? logs.map((logMessage) => (
-                      <LogModal key={uuid4()} {...logMessage} />
-                  ))
-                : null}
+            {LogMessages}
         </div>
     );
 };

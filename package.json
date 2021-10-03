@@ -25,7 +25,7 @@
   "homepage": "https://github.com/fayzzzm/fs-editor#readme",
   "dependencies": {
     "@hapi/boom": "^9.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
     "concurrently": "^5.2.0",
