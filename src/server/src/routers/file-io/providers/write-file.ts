@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { getFileNameByExtension } from '@utils/getFileName';
+import { getFileNameByExtension } from '../../../utils/getFileName';
 
 export const writeFile = (req: Request, res: Response) => {
     const { extension } = req.body;

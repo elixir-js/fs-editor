@@ -4,7 +4,7 @@
   "description": "Live editor for Typescript / Javascript.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:client": "npx jest --config=src/client/jest.config.js",
     "webpack-server:client": "npx webpack-dev-server --config ./src/client/webpack.config.ts",
     "app:build": "concurrently \"npm run webpack-server:client\" \"npm run server:build-watch\"",
     "server:build": "tsc -p ./src/server/tsconfig.json && node ./src/server/dist/src/index.js",
@@ -51,6 +51,9 @@
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
+    "@testing-library/dom": "^8.7.2",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
     "@types/classnames": "^2.2.10",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.7",
