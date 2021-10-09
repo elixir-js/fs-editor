@@ -13,20 +13,11 @@ interface IFileButtons {
 }
 
 export const FileButtons: React.FC<IFileButtons> = inject('editorDataModel')(
-    (props) => {
-        const { updateExtension } = props.editorDataModel as EditorDataModel;
-        const handleClick = (extension: ExtensionType) => {
-            updateExtension(extension);
-        };
-
+    () => {
         return (
             <div className="file-buttons">
                 {fileButtonData.map((data) => (
-                    <FileButton
-                        key={uuidv4()}
-                        {...data}
-                        handleClick={handleClick}
-                    />
+                    <FileButton key={uuidv4()} {...data} />
                 ))}
                 ;
             </div>

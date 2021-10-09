@@ -59,6 +59,8 @@ export const Editor: React.FC<IEditor> = inject('editorDataModel')(
             }
         };
 
+        console.log(extension);
+
         return (
             <div className="fs-editor">
                 <div className="fs-editor__view">
