@@ -11,6 +11,7 @@ import { EditorDataModel } from '@app/models/editor-data';
 import './styles.scss';
 
 interface IFileButton {
+    handleClick: (value: ExtensionType) => void;
     extension: ExtensionType;
     name: string;
     editorDataModel?: EditorDataModel;
@@ -18,15 +19,10 @@ interface IFileButton {
 
 export const FileButton: React.FC<IFileButton> = inject('editorDataModel')(
     (props) => {
-        const { extension, name } = props;
+        const { extension, name, handleClick } = props;
         const {
             extension: originExtension,
-            updateExtension,
         } = props.editorDataModel as EditorDataModel;
-
-        const handleClick = (extension: ExtensionType) => {
-            updateExtension(extension);
-        };
 
         const classNames = classnames([
             'file-button',
@@ -48,6 +44,7 @@ export const FileButton: React.FC<IFileButton> = inject('editorDataModel')(
 );
 
 FileButton.propTypes = {
+    handleClick: PropTypes.func.isRequired,
     extension: PropTypes.oneOf([
         ExtensionType.CSS,
         ExtensionType.HTML,
